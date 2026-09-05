@@ -6,7 +6,7 @@ This requires Ollama (not the Python module, the app) running in the background.
 ```json
 {
   "pid": 0123456789,
-  "ids": "replied_ids.json"
+  "ids": "replied_ids.json",
   "model": "qwen2.5:1.5b",
   "username": "USERNAME_HERE",
   "password": "PASSWORD_HERE",

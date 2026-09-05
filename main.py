@@ -105,7 +105,7 @@ IDS_FILE = cfg["ids"]
 
 def save_ids(replied_ids):
     with open(IDS_FILE, "w") as f:
-        json.dump(replied_ids, f)
+        json.dump(replied_ids[:cfg["max_ids"]], f)
 
 def load_ids():
     try:
@@ -140,9 +140,7 @@ def ai(prompt: str, system: str, model: str=AI_MODEL):
     except Exception:
         output = text.replace("|RESULT|", "").replace("<!>|RESULT|<!>", "").replace("<!>", "")
     output = strip_ansi(output) #strips it beforehand cuz technically ANSI stuff are one character
-    if len(output) > 500:
-        return output[:499] #trunacate for scratch comment limit
-    return output
+    return output[:500] #trunacate for scratch comment limit
 
 
 os.system("cls" if os.name == "nt" else "clear")
@@ -163,6 +161,9 @@ session = sa.login(cfg["username"], cfg["password"])
 project = session.connect_project(PROJECT_ID)
 ids_replied = load_ids()
 
+if cfg["max_ids"] > 40:
+    cfg["max_ids"] = 40
+
 try:
     while True:
         replied = False
@@ -170,7 +171,7 @@ try:
         username = ""
         message = ""
         id_ = 0
-        response = requests.get(f"https://api.scratch.mit.edu/users/{cfg['username']}/projects/{PROJECT_ID}/comments").json() #yes, i fetch it from the raw API instead of scratchattach cuz idk how to get all comments lol
+        response = requests.get(f"https://api.scratch.mit.edu/users/{cfg['username']}/projects/{PROJECT_ID}/comments?limit={cfg['max_ids']}").json() #yes, i fetch it from the raw API instead of scratchattach cuz idk how to get all comments lol
         for i in response:
             if i["id"] in ids_replied:
                 continue

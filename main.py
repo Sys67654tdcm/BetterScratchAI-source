@@ -176,7 +176,7 @@ try:
         username = ""
         message = ""
         id_ = 0
-        response = requests.get(f"https://api.scratch.mit.edu/users/{cfg['username']}/projects/{PROJECT_ID}/comments?limit={cfg['max_ids']}").json() #yes, i fetch it from the raw API instead of scratchattach cuz idk how to get all comments lol
+        response = project.get_comments(limit=cfg["max_ids"])
         for i in response:
             if i["id"] in ids_replied:
                 continue

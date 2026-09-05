@@ -22,3 +22,5 @@ where `"pid"` is the project ID it is commenting on (by the bot's account),
 `"hoster"` is the hoster's account's username,
 and `"max_ids"` is the maximum amount of IDs stored. 
 If `"max_ids"` goes over 40, it will automatically go down to 40.
+
+Please Note: This requires `scratchattach`.

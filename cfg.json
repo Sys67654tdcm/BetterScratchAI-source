@@ -1,1 +1,8 @@
-{"pid": 1376132622, "model": "qwen2.5:1.5b", "username": "USERNAME_HERE", "password": "PASSWORD_HERE", "ids": "replied_ids.json"}
+{
+  "pid": 1376132622, 
+  "model": "qwen2.5:1.5b", 
+  "username": "USERNAME_HERE", 
+  "password": "PASSWORD_HERE", 
+  "ids": "replied_ids.json",
+  "hoster": "HOSTER_USERNAME_HERE"
+}

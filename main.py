@@ -188,7 +188,7 @@ try:
         username = ""
         message = ""
         id_ = 0
-        response = project.comments(limit=cfg["max_ids"], offset=offset)
+        response = requests.get(f"https://api.scratch.mit.edu/users/{cfg['username']}/projects/{PROJECT_ID}/comments?limit={cfg['limit']}&offset={offset}").json()
         for i in response:
             if i["id"] in ids_replied:
                 continue

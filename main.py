@@ -105,7 +105,7 @@ IDS_FILE = cfg["ids"]
 
 def save_ids(replied_ids):
     with open(IDS_FILE, "w") as f:
-        json.dump(replied_ids[:cfg["max_ids"]], f)
+        json.dump(replied_ids, f)
 
 def load_ids():
     try:
@@ -165,9 +165,11 @@ if cfg["max_ids"] > 40:
     cfg["max_ids"] = 40
     
 if len(ids_replied) > cfg["max_ids"]:
+    ids_replied = ids_replied[-cfg["max_ids"]:]
     save_ids(ids_replied)
 
 try:
+    print("press ctrl+c or cmd+c to exit")
     while True:
         replied = False
         print("reply time")
@@ -192,6 +194,7 @@ try:
             project.reply_comment(content="I am not a fake AI. For proof, go to https://github.com/Sys67654tdcm/BetterScratchAI-source/.", parent_id=id_, commentee_id=id_2)
             print("sent reply")
             ids_replied.append(id_)
+            ids_replied = ids_replied[-cfg["max_ids"]:]
             save_ids(ids_replied)
             time.sleep(60 / cfg["ppm"])
             continue
@@ -277,12 +280,15 @@ try:
         replied = True
         print("sent reply")
         ids_replied.append(id_)
+        ids_replied = ids_replied[-cfg["max_ids"]:]
         save_ids(ids_replied)
         time.sleep(60 / cfg["ppm"])
 except KeyboardInterrupt:
     if id_ not in ids_replied and replied:
         ids_replied.append(id_)
+        ids_replied = ids_replied[-cfg["max_ids"]:]
         save_ids(ids_replied)
 except Exception as e:
     print(f"{type(e).__name__}: {e}")
     input("Press Enter to close.")
+

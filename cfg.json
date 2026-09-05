@@ -5,6 +5,5 @@
   "password": "PASSWORD_HERE", 
   "ids": "replied_ids.json",
   "hoster": "HOSTER_USERNAME_HERE",
-  "max_ids": 20,
   "ppm": 1
 }

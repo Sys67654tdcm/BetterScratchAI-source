@@ -184,16 +184,16 @@ try:
             id_2 = i["author"]["id"]
             break
         if username == "":
-            time.sleep(60)
+            time.sleep(60 / cfg["ppm"])
             continue
         print("got msg")
         
         if message.lower().strip(".?-!#+=_-") == "fake ai":
-            project.reply_comment(content="I am not a fake AI. For proof, go to https://scratch.mit.edu/projects/1376410362/.", parent_id=id_, commentee_id=id_2)
+            project.reply_comment(content="I am not a fake AI. For proof, go to https://github.com/Sys67654tdcm/BetterScratchAI-source/.", parent_id=id_, commentee_id=id_2)
             print("sent reply")
             ids_replied.append(id_)
             save_ids(ids_replied)
-            time.sleep(60)
+            time.sleep(60 / cfg["ppm"])
             continue
         
         generate_system_prompt()
@@ -278,7 +278,7 @@ try:
         print("sent reply")
         ids_replied.append(id_)
         save_ids(ids_replied)
-        time.sleep(60)
+        time.sleep(60 / cfg["ppm"])
 except KeyboardInterrupt:
     if id_ not in ids_replied and replied:
         ids_replied.append(id_)

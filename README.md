@@ -11,7 +11,6 @@ This requires Ollama (not the Python module, the app) running in the background.
   "username": "USERNAME_HERE",
   "password": "PASSWORD_HERE",
   "hoster": "HOSTER_USERNAME_HERE",
-  "max_ids": 20,
   "ppm": 1
 }
 ```

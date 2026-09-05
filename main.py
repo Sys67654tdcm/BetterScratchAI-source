@@ -163,6 +163,9 @@ ids_replied = load_ids()
 
 if cfg["max_ids"] > 40:
     cfg["max_ids"] = 40
+    
+if len(ids_replied) > cfg["max_ids"]:
+    save_ids(ids_replied)
 
 try:
     while True:

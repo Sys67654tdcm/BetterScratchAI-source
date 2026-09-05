@@ -161,25 +161,6 @@ session = sa.login(cfg["username"], cfg["password"])
 project = session.connect_project(PROJECT_ID)
 ids_replied = load_ids()
 
-def save_offset(offset):
-    with open("offset.txt", "w") as f:
-        f.write(str(offset))
-
-try:
-    with open("offset.txt", "r") as f:
-        offset = int(f.read())
-except FileNotFoundError:
-    with open("offset.txt", "w") as f:
-        offset = 0
-        f.write("0")
-
-if cfg["max_ids"] > 40:
-    cfg["max_ids"] = 40
-    
-if len(ids_replied) > cfg["max_ids"]:
-    ids_replied = ids_replied[-cfg["max_ids"]:]
-    save_ids(ids_replied)
-
 try:
     print("press ctrl+c or cmd+c to exit")
     while True:
@@ -188,7 +169,7 @@ try:
         username = ""
         message = ""
         id_ = 0
-        response = requests.get(f"https://api.scratch.mit.edu/users/{cfg['username']}/projects/{PROJECT_ID}/comments?limit={cfg['max_ids'] + 1}&offset={offset}").json()
+        response = requests.get(f"https://api.scratch.mit.edu/users/{cfg['username']}/projects/{PROJECT_ID}/comments").json()
         for i in response:
             if i["id"] in ids_replied:
                 continue
@@ -206,10 +187,7 @@ try:
             project.reply_comment(content="I am not a fake AI. For proof, go to https://github.com/Sys67654tdcm/BetterScratchAI-source/.", parent_id=id_, commentee_id=id_2)
             print("sent reply")
             ids_replied.append(id_)
-            ids_replied = ids_replied[-cfg["max_ids"]:]
             save_ids(ids_replied)
-            offset += 1
-            save_offset(offset)
             time.sleep(60 / cfg["ppm"])
             continue
         
@@ -294,18 +272,12 @@ try:
         replied = True
         print("sent reply")
         ids_replied.append(id_)
-        ids_replied = ids_replied[-cfg["max_ids"]:]
         save_ids(ids_replied)
-        offset += 1
-        save_offset(offset)
         time.sleep(60 / cfg["ppm"])
 except KeyboardInterrupt:
     if id_ not in ids_replied and replied:
         ids_replied.append(id_)
-        ids_replied = ids_replied[-cfg["max_ids"]:]
         save_ids(ids_replied)
-        offset += 1
-        save_offset(offset)
 except Exception as e:
     print(f"{type(e).__name__}: {e}")
     input("Press Enter to close.")

@@ -5,7 +5,7 @@ This requires Ollama (not the Python module, the app) running in the background.
 
 ```json
 {
-  "pid": 0123456789,
+  "pid": 123456789,
   "ids": "replied_ids.json",
   "model": "qwen2.5:1.5b",
   "username": "USERNAME_HERE",
@@ -19,4 +19,6 @@ where `"pid"` is the project ID it is commenting on (by the bot's account),
 `"model"` is the model that is currently running on Ollama,
 `"username"` is the bot's account's username,
 `"password"` is the bot's account's password,
-and `"hoster"` is the hoster's account's username.
+`"hoster"` is the hoster's account's username,
+and `"max_ids"` is the maximum amount of IDs stored. 
+If `"max_ids"` goes over 40, it will automatically go down to 40.

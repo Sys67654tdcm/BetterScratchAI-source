@@ -10,7 +10,8 @@ This requires Ollama (not the Python module, the app) running in the background.
   "model": "qwen2.5:1.5b",
   "username": "USERNAME_HERE",
   "password": "PASSWORD_HERE",
-  "hoster": "HOSTER_USERNAME_HERE"
+  "hoster": "HOSTER_USERNAME_HERE",
+  "max_ids": 20
 }
 ```
 where `"pid"` is the project ID it is commenting on (by the bot's account),

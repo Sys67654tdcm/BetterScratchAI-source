@@ -161,6 +161,18 @@ session = sa.login(cfg["username"], cfg["password"])
 project = session.connect_project(PROJECT_ID)
 ids_replied = load_ids()
 
+def save_offset(offset):
+    with open("offset.txt", "w") as f:
+        f.write(str(offset))
+
+try:
+    with open("offset.txt", "r") as f:
+        offset = int(f.read())
+except FileNotFoundError:
+    with open("offset.txt", "w") as f:
+        offset = 0
+        f.write("0")
+
 if cfg["max_ids"] > 40:
     cfg["max_ids"] = 40
     
@@ -176,7 +188,7 @@ try:
         username = ""
         message = ""
         id_ = 0
-        response = project.get_comments(limit=cfg["max_ids"])
+        response = project.comments(limit=cfg["max_ids"], offset=offset)
         for i in response:
             if i["id"] in ids_replied:
                 continue
@@ -196,6 +208,8 @@ try:
             ids_replied.append(id_)
             ids_replied = ids_replied[-cfg["max_ids"]:]
             save_ids(ids_replied)
+            offset += 1
+            save_offset(offset)
             time.sleep(60 / cfg["ppm"])
             continue
         
@@ -282,12 +296,16 @@ try:
         ids_replied.append(id_)
         ids_replied = ids_replied[-cfg["max_ids"]:]
         save_ids(ids_replied)
+        offset += 1
+        save_offset(offset)
         time.sleep(60 / cfg["ppm"])
 except KeyboardInterrupt:
     if id_ not in ids_replied and replied:
         ids_replied.append(id_)
         ids_replied = ids_replied[-cfg["max_ids"]:]
         save_ids(ids_replied)
+        offset += 1
+        save_offset(offset)
 except Exception as e:
     print(f"{type(e).__name__}: {e}")
     input("Press Enter to close.")

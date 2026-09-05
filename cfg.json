@@ -4,5 +4,6 @@
   "username": "USERNAME_HERE", 
   "password": "PASSWORD_HERE", 
   "ids": "replied_ids.json",
-  "hoster": "HOSTER_USERNAME_HERE"
+  "hoster": "HOSTER_USERNAME_HERE",
+  "max_ids": 20
 }

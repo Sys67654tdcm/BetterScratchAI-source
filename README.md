@@ -11,7 +11,8 @@ This requires Ollama (not the Python module, the app) running in the background.
   "username": "USERNAME_HERE",
   "password": "PASSWORD_HERE",
   "hoster": "HOSTER_USERNAME_HERE",
-  "max_ids": 20
+  "max_ids": 20,
+  "ppm": 1
 }
 ```
 where `"pid"` is the project ID it is commenting on (by the bot's account),
@@ -20,7 +21,8 @@ where `"pid"` is the project ID it is commenting on (by the bot's account),
 `"username"` is the bot's account's username,
 `"password"` is the bot's account's password,
 `"hoster"` is the hoster's account's username,
-and `"max_ids"` is the maximum amount of IDs stored. 
+`"max_ids"` is the maximum amount of IDs stored,
+and `"ppm"` is the amount of Polls Per Minute. (thats what PPM stands for here)
 If `"max_ids"` goes over 40, it will automatically go down to 40.
 
 Please Note: This requires `scratchattach`.

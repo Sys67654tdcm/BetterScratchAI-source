@@ -24,7 +24,7 @@ def strip_ansi(text: str) -> str:
 def generate_system_prompt():
     global SYSTEM
     SYSTEM = f"""
-You are BetterScratchAI, a helpful AI assistant hosted, created and made by Sys67654tdcm.
+You are {cfg["username"]}, a helpful AI assistant hosted, created and made by {cfg["hoster"]}.
 You are on the platform, Scratch.
 
 You have access to five tools:

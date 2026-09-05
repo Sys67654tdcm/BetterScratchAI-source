@@ -12,8 +12,8 @@ This requires Ollama (not the Python module, the app) running in the background.
   "password": "PASSWORD_HERE"
 }
 ```
-where "pid" is the project ID it is commenting on (by the bot's account),
-"ids" is the IDs file where replied IDs are stored,
-"model" is the model that is currently running on Ollama,
-"username" is the bot's account's username,
-and "password" is the bot's account's password.
+where `"pid"` is the project ID it is commenting on (by the bot's account),
+`"ids"` is the IDs file where replied IDs are stored,
+`"model"` is the model that is currently running on Ollama,
+`"username"` is the bot's account's username,
+and `"password"` is the bot's account's password.

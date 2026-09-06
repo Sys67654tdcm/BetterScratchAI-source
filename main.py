@@ -162,7 +162,7 @@ project = session.connect_project(PROJECT_ID)
 ids_replied = load_ids()
 
 try:
-    print("press ctrl+c or cmd+c to exit")
+    print("press ctrl+c to exit")
     while True:
         replied = False
         print("reply time")
@@ -197,7 +197,7 @@ try:
             thing = json.loads(str(thing))
             if not "tool" in thing:
                 continue
-            print(f"called the '{thing['tool']}', with args {thing['args']}!")
+            print(f"called '{thing['tool']}' with args {thing['args']}")
             if thing["tool"] == "time":
                 now = datetime.now()
                 project.reply_comment(

@@ -105,7 +105,7 @@ IDS_FILE = cfg["ids"]
 
 def save_ids(replied_ids):
     with open(IDS_FILE, "w") as f:
-        json.dump(replied_ids, f)
+        json.dump(replied_ids[-40:], f) #the endpoint i connect to automatically gives us the latest 20 comments so we dont need comments going FOREVER
 
 def load_ids():
     try:

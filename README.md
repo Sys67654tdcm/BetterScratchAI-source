@@ -20,8 +20,6 @@ where `"pid"` is the project ID it is commenting on (by the bot's account),
 `"username"` is the bot's account's username,
 `"password"` is the bot's account's password,
 `"hoster"` is the hoster's account's username,
-`"max_ids"` is the maximum amount of IDs stored,
 and `"ppm"` is the amount of Polls Per Minute. (thats what PPM stands for here)
-If `"max_ids"` goes over 40, it will automatically go down to 40.
 
 Please Note: This requires `scratchattach`.
